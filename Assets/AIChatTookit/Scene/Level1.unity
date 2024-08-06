@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 151296812}
   - component: {fileID: 151296811}
   - component: {fileID: 151296810}
+  - component: {fileID: 151296814}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -702,6 +703,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &151296814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151296809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725ecb1de333e1e428fb8f348553ae82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material1: {fileID: 2100000, guid: a5b5b35a69728e240859f539703b96ac, type: 2}
+  material2: {fileID: 2100000, guid: d253a29e54563f249bafe798462c2c21, type: 2}
+  quadObject: {fileID: 151296809}
 --- !u!1 &177841670
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,7 +3820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -795, y: -218}
+  m_AnchoredPosition: {x: -421.17, y: -80}
   m_SizeDelta: {x: 545.4039, y: 110.5938}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136834929
@@ -3851,10 +3867,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1435085656}
-        m_TargetAssemblyTypeName: ChatSample, Assembly-CSharp
-        m_MethodName: SwitchScene
-        m_Mode: 5
+      - m_Target: {fileID: 151296814}
+        m_TargetAssemblyTypeName: BackgroundSwitcher, Assembly-CSharp
+        m_MethodName: SwitchBackground
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4203,7 +4219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 822dbc287d4416449a8a8d813366cd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: http://localhost:11434/api/chat
+  url: http://222.187.239.98:11434/api/chat
   m_Prompt: "\u4EE5\u4E0B\u6240\u6709\u5185\u5BB9\u90FD\u8981\u7528\u4E2D\u6587\u56DE\u590D\u3002"
   lan: Chinese
   m_HistoryKeepCount: 20
@@ -4481,8 +4497,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1230, y: 0}
-  m_SizeDelta: {x: 2440, y: 0}
+  m_AnchoredPosition: {x: 684.5, y: 0}
+  m_SizeDelta: {x: 1349, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1423120622
 MonoBehaviour:
@@ -4671,6 +4687,8 @@ MonoBehaviour:
   m_PostChatPrefab: {fileID: 6979810732102040386, guid: 788f37e7a522f7240b2b6902142d4453, type: 3}
   m_RobotChatPrefab: {fileID: 8714652910549115154, guid: 38c74690b913d85458e92397fb740006, type: 3}
   m_ScroTectObject: {fileID: 69452807}
+  image1: {fileID: 0}
+  image2: {fileID: 0}
 --- !u!4 &1435085657
 Transform:
   m_ObjectHideFlags: 0

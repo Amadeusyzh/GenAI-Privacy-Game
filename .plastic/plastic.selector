@@ -1,0 +1,4 @@
+repository "TestGit@amadeus_zero@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"

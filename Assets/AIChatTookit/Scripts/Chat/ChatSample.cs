@@ -425,4 +425,26 @@ public class ChatSample : MonoBehaviour
     {
         SceneManager.LoadScene("Level2");
     }
+    public Image image1; // 第一张图片
+    public Image image2; // 第二张图片
+
+    private bool isImage1Active = true;
+
+    // 当按钮被点击时调用此方法
+    public void SwitchImage()
+    {
+        if (isImage1Active)
+        {
+            image1.gameObject.SetActive(false);
+            image2.gameObject.SetActive(true);
+        }
+        else
+        {
+            image1.gameObject.SetActive(true);
+            image2.gameObject.SetActive(false);
+        }
+        isImage1Active = !isImage1Active;
+    }
+
+
 }
