@@ -1,0 +1,25 @@
+# Ignore Unity temp files
+Temp/
+Library/
+Logs/
+MemoryCaptures/
+obj/
+Build/
+Builds/
+UserSettings/
+
+# Ignore auto-generated VS/VSCode/JetBrains Rider files
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb

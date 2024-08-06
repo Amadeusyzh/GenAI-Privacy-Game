@@ -25,17 +25,6 @@ public class ChatOllama : LLM
     /// 发送消息
     /// </summary>
     /// <returns></returns>
-    public override void PostMsg(string _msg, Action<string> _callback)
-    {
-        base.PostMsg(_msg, _callback);
-    }
-
-    /// <summary>
-    /// 调用接口
-    /// </summary>
-    /// <param name="_postWord"></param>
-    /// <param name="_callback"></param>
-    /// <returns></returns>
     public override IEnumerator Request(string _postWord, System.Action<string> _callback)
     {
         stopwatch.Restart();
@@ -60,14 +49,27 @@ public class ChatOllama : LLM
             if (request.responseCode == 200)
             {
                 string _msgBack = request.downloadHandler.text;
-                MessageBack _textback = JsonUtility.FromJson<MessageBack>(_msgBack);
-                if (_textback != null && _textback.message!=null)
-                {
 
+                // 将返回的内容解析为MessageBack对象
+                MessageBack _textback = JsonUtility.FromJson<MessageBack>(_msgBack);
+                if (_textback != null && _textback.message != null)
+                {
                     string _backMsg = _textback.message.content;
-                    //添加记录
+                    
+                    // 解析嵌套的GameResponse
+                    GameResponse response = JsonUtility.FromJson<GameResponse>(_backMsg);
+                    Debug.Log("LLM生成: " + _backMsg);
+                    if (response != null)
+                    {
+                        Debug.Log("Game Master Guidance: " + response.gamemaster_guidance);
+                        Debug.Log("Aegis Reaction: " + response.aegis_reaction);
+                        Debug.Log("Clue ID: " + response.clue_id);
+                        Debug.Log("Scene ID: " + response.scene_id);
+                    }
+
+                    // 添加记录
                     m_DataList.Add(new SendData("assistant", _backMsg));
-                    _callback(_backMsg);
+                    _callback("Game Master Guidance:"+ response.gamemaster_guidance+"\n"+ "\n" + "Aegis:"+response.aegis_reaction);
                 }
             }
             else
@@ -80,6 +82,7 @@ public class ChatOllama : LLM
             Debug.Log("Ollama耗时：" + stopwatch.Elapsed.TotalSeconds);
         }
     }
+
 
     #region 数据定义
 
@@ -101,8 +104,9 @@ public class ChatOllama : LLM
         public string created_at;
         public string model;
         public Message message;
+        public GameResponse response; // 添加这一行来包含解析后的JSON响应
     }
- 
+
     [Serializable]
     public class Message
     {
@@ -110,6 +114,14 @@ public class ChatOllama : LLM
         public string content;
     }
 
+    [Serializable]
+    public class GameResponse
+    {
+        public string gamemaster_guidance;
+        public string aegis_reaction;
+        public int? clue_id;
+        public int? scene_id;
+    }
     #endregion
 
 }

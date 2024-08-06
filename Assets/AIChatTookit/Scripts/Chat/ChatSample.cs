@@ -142,13 +142,13 @@ public class ChatSample : MonoBehaviour
         _response = _response.Trim();
         m_TextBack.text = "";
 
-        
-        Debug.Log("收到AI回复："+ _response);
+
+        Debug.Log("收到AI回复：" + _response);
 
         //记录聊天
         m_ChatHistory.Add(_response);
 
-        if (!m_IsVoiceMode||m_ChatSettings.m_TextToSpeech == null)
+        if (!m_IsVoiceMode || m_ChatSettings.m_TextToSpeech == null)
         {
             //开始逐个显示返回的文本
             StartTypeWords(_response);
@@ -159,9 +159,9 @@ public class ChatSample : MonoBehaviour
         m_ChatSettings.m_TextToSpeech.Speak(_response, PlayVoice);
     }
 
-#endregion
+    #endregion
 
-#region 语音输入
+    #region 语音输入
     /// <summary>
     /// 语音识别返回的文本是否直接发送至LLM
     /// </summary>
@@ -173,7 +173,7 @@ public class ChatSample : MonoBehaviour
     /// <summary>
     /// 录音按钮的文本
     /// </summary>
-    [SerializeField]private Text m_VoiceBottonText;
+    [SerializeField] private Text m_VoiceBottonText;
     /// <summary>
     /// 录音的提示信息
     /// </summary>
@@ -215,7 +215,7 @@ public class ChatSample : MonoBehaviour
     /// </summary>
     public void StartRecord()
     {
-        m_VoiceBottonText.text = "正在录音中..."; 
+        m_VoiceBottonText.text = "正在录音中...";
         m_VoiceInputs.StartRecordAudio();
     }
     /// <summary>
@@ -223,7 +223,7 @@ public class ChatSample : MonoBehaviour
     /// </summary>
     public void StopRecord()
     {
-        m_VoiceBottonText.text = "按住按钮，开始录音"; 
+        m_VoiceBottonText.text = "按住按钮，开始录音";
         m_RecordTips.text = "录音结束，正在识别...";
         m_VoiceInputs.StopRecordAudio(AcceptClip);
     }
@@ -275,9 +275,9 @@ public class ChatSample : MonoBehaviour
         _textbox.text = "";
     }
 
-#endregion
+    #endregion
 
-#region 语音合成
+    #region 语音合成
 
     private void PlayVoice(AudioClip _clip, string _response)
     {
@@ -290,9 +290,9 @@ public class ChatSample : MonoBehaviour
         SetAnimator("state", 2);
     }
 
-#endregion
+    #endregion
 
-#region 文字逐个显示
+    #region 文字逐个显示
     //逐字显示的时间间隔
     [SerializeField] private float m_WordWaitTime = 0.2f;
     //是否显示完成
@@ -326,12 +326,12 @@ public class ChatSample : MonoBehaviour
         }
 
         //切换到等待动作
-        SetAnimator("state",0);
+        SetAnimator("state", 0);
     }
 
-#endregion
+    #endregion
 
-#region 聊天记录
+    #region 聊天记录
     //保存聊天记录
     [SerializeField] private List<string> m_ChatHistory;
     //缓存已创建的聊天气泡
@@ -410,9 +410,9 @@ public class ChatSample : MonoBehaviour
     }
 
 
-#endregion
+    #endregion
 
-    private void SetAnimator(string _para,int _value)
+    private void SetAnimator(string _para, int _value)
     {
         if (m_Animator == null)
             return;
