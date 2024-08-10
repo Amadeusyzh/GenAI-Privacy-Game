@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\AIChatTookit\Scripts\LLM\Ollama\ChatOllama1.cs" />
      <Compile Include="Assets\AIChatTookit\Scripts\TTS&amp;&amp;STT\Azure\WavUtility.cs" />
      <Compile Include="Assets\AIChatTookit\Tool\Webgl\webglVoiceInput\Scripts\SignalManager.cs" />
      <Compile Include="Assets\AIChatTookit\Tool\Webgl\webglTextInput\WebGLSupport\WebGLInput\WebGLInput.cs" />
@@ -53,7 +54,6 @@
      <Compile Include="Assets\AIChatTookit\Scripts\Chat\RTChatSample.cs" />
      <Compile Include="Assets\AIChatTookit\Scripts\TTS&amp;&amp;STT\OpenAI\OpenAITextToSpeech.cs" />
      <Compile Include="Assets\AIChatTookit\Scripts\LLM\chatGLM\chatGLM.cs" />
-     <Compile Include="Assets\AIChatTookit\Scripts\LLM\Ollama\ChatOllama.cs" />
      <Compile Include="Assets\AIChatTookit\Tool\Webgl\webglTextInput\WebGLSupport\WebGLWindow\WebGLWindow.cs" />
      <Compile Include="Assets\AIChatTookit\Scripts\Expression\BlinkController.cs" />
      <Compile Include="Assets\AIChatTookit\Scripts\Chat\VoiceInputs.cs" />
@@ -84,16 +84,19 @@
      <Compile Include="Assets\AIChatTookit\Scripts\LLM\Baidu\ChatBaidu.cs" />
      <Compile Include="Assets\AIChatTookit\Tool\LipSync\Scripts\AudioToLipSample.cs" />
      <Compile Include="Assets\AIChatTookit\Scripts\TTS&amp;&amp;STT\BaiduAI\BaiduSettings.cs" />
+     <Compile Include="Assets\AIChatTookit\Scripts\LLM\Ollama\ChatOllama.cs" />
      <Compile Include="Assets\AIChatTookit\Scripts\TTS&amp;&amp;STT\TTS.cs" />
      <Compile Include="Assets\AIChatTookit\Tool\Webgl\webglTextInput\WebGLSupport\WebGLInput\Detail\RebuildChecker.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\Prompt\system_prompt_en2(1).txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\AIChatTookit\Mesh\胡桃\胡桃.MMD4Mecanim.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\AIChatTookit\Font\FontShader.shader" />
+     <None Include="Assets\Prompt\system_prompt_ch.txt" />
      <None Include="Assets\AIChatTookit\Mesh\胡桃\readme【一定要看】.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -101,6 +104,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <None Include="Assets\Prompt\system_prompt_en.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

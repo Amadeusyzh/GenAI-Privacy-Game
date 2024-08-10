@@ -22,7 +22,7 @@ public class chatgptTurbo : LLM
     /// <summary>
     /// gpt-3.5-turbo
     /// </summary>
-    public string m_gptModel = "gpt-3.5-turbo";
+    public string m_gptModel = "gpt-4o";
 
 
     private void Start()
@@ -30,6 +30,12 @@ public class chatgptTurbo : LLM
         //运行时，添加AI设定
         m_DataList.Add(new SendData("system", m_SystemSetting));
     }
+
+    // 新增字段用于存储解析后的数据
+    public string gamemasterGuidance { get; private set; }
+    public string aegisReaction { get; private set; }
+    public int? clueId { get; private set; }
+    public int? sceneId { get; private set; }
 
     /// <summary>
     /// 发送消息
@@ -69,15 +75,29 @@ public class chatgptTurbo : LLM
 
             if (request.responseCode == 200)
             {
+
+
                 string _msgBack = request.downloadHandler.text;
                 MessageBack _textback = JsonUtility.FromJson<MessageBack>(_msgBack);
                 if (_textback != null && _textback.choices.Count > 0)
                 {
 
                     string _backMsg = _textback.choices[0].message.content;
+                    int jsonStartIndex = _backMsg.IndexOf('{');
+                    int jsonEndIndex = _backMsg.LastIndexOf('}');
+                    string cleanJson = _backMsg.Substring(jsonStartIndex, jsonEndIndex - jsonStartIndex + 1);
+                    // 解析纯JSON内容
+                    ResponseData responseData = JsonUtility.FromJson<ResponseData>(cleanJson);
+
+                    // 存储解析后的数据
+                    gamemasterGuidance = responseData.gamemaster_guidance;
+                    aegisReaction = responseData.aegis_reaction;
+                    clueId = responseData.clue_id.HasValue ? responseData.clue_id : null;
+                    sceneId = responseData.scene_id.HasValue ? responseData.scene_id : null;
+
                     //添加记录
-                    m_DataList.Add(new SendData("assistant", _backMsg));
-                    _callback(_backMsg);
+                    m_DataList.Add(new SendData("assistant", cleanJson));
+                    _callback(cleanJson);
                 }
 
             }
@@ -86,7 +106,62 @@ public class chatgptTurbo : LLM
                 string _msgBack = request.downloadHandler.text;
                 Debug.LogError(_msgBack);
             }
+            /*
+                        if (request.responseCode == 200)
+                        {
+                            string _msgBack = request.downloadHandler.text;
 
+                            // 检查并去除多余的文本
+                            int jsonStartIndex = _msgBack.IndexOf('{');
+                            int jsonEndIndex = _msgBack.LastIndexOf('}');
+                            if (jsonStartIndex >= 0 && jsonEndIndex >= 0)
+                            {
+                                // 提取纯JSON部分
+                                string cleanJson = _msgBack.Substring(jsonStartIndex, jsonEndIndex - jsonStartIndex + 1);
+                                if (_textback != null && _textback.choices.Count > 0)
+                                {
+
+                                    string _backMsg = _textback.choices[0].message.content;
+                                    //添加记录
+                                    m_DataList.Add(new SendData("assistant", _backMsg));
+                                    _callback(_backMsg);
+                                }
+
+                                }
+                                else
+                                {
+                                    string _msgBack = request.downloadHandler.text;
+                                    Debug.LogError(_msgBack);
+                                }
+                            try
+                                {
+                                    // 解析纯JSON内容
+                                    ResponseData responseData = JsonUtility.FromJson<ResponseData>(cleanJson);
+
+                                    // 存储解析后的数据
+                                    gamemasterGuidance = responseData.gamemaster_guidance;
+                                    aegisReaction = responseData.aegis_reaction;
+                                    clueId = responseData.clue_id.HasValue ? responseData.clue_id : null;
+                                    sceneId = responseData.scene_id.HasValue ? responseData.scene_id : null;
+
+                                    // 回调
+                                    _callback(cleanJson);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Debug.LogError("Error parsing JSON response: " + ex.Message);
+                                }
+                            }
+                            else
+                            {
+                                Debug.LogError("No valid JSON found in the response.");
+                            }
+                        }
+                        else
+                        {
+                            string _msgBack = request.downloadHandler.text;
+                            Debug.LogError(_msgBack);
+                        }*/
             stopwatch.Stop();
             Debug.Log("chatgpt耗时："+ stopwatch.Elapsed.TotalSeconds);
         }
@@ -122,6 +197,16 @@ public class chatgptTurbo : LLM
     {
         public string role;
         public string content;
+    }
+
+    // 新增用于解析返回的JSON数据的类
+    [Serializable]
+    public class ResponseData
+    {
+        public string gamemaster_guidance;
+        public string aegis_reaction;
+        public int? clue_id;
+        public int? scene_id;
     }
 
     #endregion

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using WebGLSupport;
 using UnityEngine.SceneManagement;
-
+using System;
 public class ChatSample : MonoBehaviour
 {
     /// <summary>
@@ -33,9 +33,35 @@ public class ChatSample : MonoBehaviour
     /// 发送信息按钮
     /// </summary>
     [SerializeField] private Button m_CommitMsgBtn;
+    /// <summary>
+    /// Guidence 的文字框
+    /// </summary>
+    [SerializeField] private Text m_GuidenceText;
 
     #endregion
+    // 新增用于解析返回的JSON数据的类
+    // 声明变量
+    private string gamemasterGuidance;
+    private string aegisReaction;
+    private int clueId;
+    private int sceneId;
 
+    public Material material1; // 背景材质1
+    public Material material2; // 背景材质2
+    public Material material3; // 背景材质3
+    public Material material4; // 背景材质4
+    public Material material5; // 背景材质5
+    public Material material6; // 背景材质6
+
+    public Material clue1; // 背景材质1
+    public Material clue2; // 背景材质2
+    public Material clue3; // 背景材质3
+    public Material clue4; // 背景材质4
+    public Material clue5; // 背景材质5
+    public Material clue6; // 背景材质6
+
+    public GameObject quadObject1; // 你想要更换材质的Quad对象
+    public GameObject quadObject2;
     #region 参数定义
     /// <summary>
     /// 动画控制器
@@ -96,7 +122,7 @@ public class ChatSample : MonoBehaviour
         m_ChatSettings.m_ChatModel.PostMsg(_msg, CallBack);
 
         m_InputWord.text = "";
-        m_TextBack.text = "正在思考中...";
+        m_TextBack.text = "Thinking...";
 
         //切换思考动作
         SetAnimator("state", 1);
@@ -127,7 +153,7 @@ public class ChatSample : MonoBehaviour
         m_ChatSettings.m_ChatModel.PostMsg(_msg, CallBack);
 
         m_InputWord.text = "";
-        m_TextBack.text = "正在思考中...";
+        m_TextBack.text = "Thinking...";
 
         //切换思考动作
         SetAnimator("state", 1);
@@ -139,26 +165,113 @@ public class ChatSample : MonoBehaviour
     /// <param name="_response"></param>
     private void CallBack(string _response)
     {
-        _response = _response.Trim();
+
+
+        ResponseData responseData = JsonUtility.FromJson<ResponseData>(_response);
+
+        // 存储解析后的数据
+        gamemasterGuidance = responseData.gamemaster_guidance;
+        aegisReaction = responseData.aegis_reaction;
+        clueId = responseData.clue_id;
+        sceneId = responseData.scene_id;
+
+        /*        _response = _response.Trim();*/
         m_TextBack.text = "";
 
+        m_GuidenceText.text = gamemasterGuidance;
 
         Debug.Log("收到AI回复：" + _response);
-
+        Debug.Log(sceneId); 
+        Debug.Log(clueId);
         //记录聊天
-        m_ChatHistory.Add(_response);
+        m_ChatHistory.Add(aegisReaction);
+
+
+        // 切换背景根据scene_id
+
+        if (sceneId != null)
+        {
+            SwitchBackground(sceneId);
+        }
+
+        if (clueId != null)
+        {
+            SwitchClue(clueId);
+        }
+
 
         if (!m_IsVoiceMode || m_ChatSettings.m_TextToSpeech == null)
         {
             //开始逐个显示返回的文本
-            StartTypeWords(_response);
+            StartTypeWords(aegisReaction);
             return;
         }
-
-
-        m_ChatSettings.m_TextToSpeech.Speak(_response, PlayVoice);
+        m_ChatSettings.m_TextToSpeech.Speak(aegisReaction, PlayVoice);
     }
+    public void SwitchBackground(int scene_id)
+    {
+        Material newMaterial = null;
 
+        switch (scene_id)
+        {
+            case 1:
+                newMaterial = material1;
+                break;
+            case 2:
+                newMaterial = material2;
+                break;
+            case 3:
+                newMaterial = material3;
+                break;
+            case 4:
+                newMaterial = material4;
+                break;
+            case 5:
+                newMaterial = material5;
+                break;
+            case 6:
+                newMaterial = material6;
+                break;
+            default:
+                Debug.LogWarning("未定义的 scene_id: " + scene_id);
+                return; // 如果scene_id未定义，直接返回
+        }
+
+        // 设置新的材质
+        quadObject1.GetComponent<Renderer>().material = newMaterial;
+    }
+    public void SwitchClue(int clue_id)
+    {
+        Material newMaterial = null;
+
+        switch (clue_id)
+        {
+            case 1:
+                newMaterial = clue1;
+                break;
+            case 2:
+                newMaterial = clue2;
+                break;
+            case 3:
+                newMaterial = clue3;
+                break;
+            case 4:
+                newMaterial = clue4;
+                break;
+            case 5:
+                newMaterial = clue5;
+                break;
+            case 6:
+                newMaterial = clue6;
+                break;
+            default:
+                Debug.LogWarning("未定义的 clue_id: " + clue_id);
+                return; // 如果scene_id未定义，直接返回
+        }
+
+        // 设置新的材质
+        quadObject2.GetComponent<Renderer>().material = newMaterial;
+    }
     #endregion
 
     #region 语音输入
@@ -320,7 +433,7 @@ public class ChatSample : MonoBehaviour
             currentPos++;
             //更新显示的内容
             m_TextBack.text = _msg.Substring(0, currentPos);
-
+/*            m_GuidenceText.text = _msg.Substring(0, currentPos);*/
             m_WriteState = currentPos < _msg.Length;
 
         }
@@ -446,5 +559,13 @@ public class ChatSample : MonoBehaviour
         isImage1Active = !isImage1Active;
     }
 
-
+    [Serializable]
+    public class ResponseData
+    {
+        public string gamemaster_guidance;
+        public string aegis_reaction;
+        public int clue_id;
+        public int scene_id;
+    }
 }
+
