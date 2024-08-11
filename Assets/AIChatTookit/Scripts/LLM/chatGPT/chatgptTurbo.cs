@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.IO;
 
 public class chatgptTurbo : LLM
 {
@@ -98,6 +99,7 @@ public class chatgptTurbo : LLM
                     //Ìí¼Ó¼ÇÂ¼
                     m_DataList.Add(new SendData("assistant", cleanJson));
                     _callback(cleanJson);
+
                 }
 
             }
