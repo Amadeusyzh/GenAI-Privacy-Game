@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2544
     height: 1333
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Inspector
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 308
+  controlID: 95
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 16
+  controlID: 17
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 17
+  controlID: 18
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -317,22 +317,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/AIChatTookit
+    - Assets/AIChatTookit/Scene
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/AIChatTookit/Result
+  - Assets/AIChatTookit/Scene
   m_LastFoldersGridSize: -1
   m_LastProjectPath: G:\VRCdemo\GenAI-Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 2}
-    m_SelectedIDs: 54610000
-    m_LastClickedID: 24916
-    m_ExpandedIDs: 000000004e61000050610000526100005461000056610000586100005a61000074610000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 085e0000
+    m_LastClickedID: 24072
+    m_ExpandedIDs: 00000000f05d0000f25d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -360,7 +360,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004e61000050610000526100005461000056610000586100005a610000
+    m_ExpandedIDs: 00000000f05d0000f25d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -488,9 +488,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 54680000
-      m_LastClickedID: 26708
-      m_ExpandedIDs: e0e6ffff08e8ffff32fbffff
+      m_SelectedIDs: ca600000
+      m_LastClickedID: 24778
+      m_ExpandedIDs: 1afaffff52faffff34fbffff4e5f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -739,9 +739,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 987.01654, y: 548.2154, z: -122.72589}
+    m_Target: {x: 933.64935, y: 577.26495, z: -619.6094}
     speed: 2
-    m_Value: {x: 987.01654, y: 548.2154, z: -122.72589}
+    m_Value: {x: 933.64935, y: 577.26495, z: -619.6094}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -792,9 +792,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 841.7144
+    m_Target: 979.9127
     speed: 2
-    m_Value: 841.7144
+    m_Value: 979.9127
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -878,7 +878,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -891,7 +891,7 @@ MonoBehaviour:
       y: 21
       width: 1460
       height: 718
-    m_Scale: {x: 0.6648148, y: 0.66481483}
+    m_Scale: {x: 0.68425924, y: 0.68425924}
     m_Translation: {x: 730, y: 359}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -899,12 +899,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1098.0502
-      y: -540
-      width: 2196.1003
-      height: 1080
+      x: -1066.8472
+      y: -524.65497
+      width: 2133.6943
+      height: 1049.3099
     m_MinimalGUI: 1
-  m_defaultScale: 0.66481483
+  m_defaultScale: 0.68425924
   m_LastWindowPixelSize: {x: 1460, y: 739}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1

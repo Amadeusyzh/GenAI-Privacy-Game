@@ -5047,7 +5047,7 @@ MonoBehaviour:
   lan: English
   m_HistoryKeepCount: 100
   m_DataList: []
-  api_key: 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
+  api_key: 
   m_SystemSetting: 
   m_gptModel: gpt-4o
 --- !u!1 &1375135989
