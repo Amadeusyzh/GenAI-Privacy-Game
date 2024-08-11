@@ -6,8 +6,6 @@ using UnityEngine.UI;
 using WebGLSupport;
 using UnityEngine.SceneManagement;
 using System;
-using System.IO;
-
 public class ChatSample : MonoBehaviour
 {
     /// <summary>
@@ -114,19 +112,9 @@ public class ChatSample : MonoBehaviour
             return;
         }
 
-        string filePath = Path.Combine(Application.dataPath, "AIChatTookit/Result/Logs.txt"); // 定义保存路径
 
         //添加记录聊天
         m_ChatHistory.Add(m_InputWord.text);
-        try
-        {
-            File.AppendAllText(filePath, m_InputWord.text + Environment.NewLine); // 将 JSON 字符串附加到文件末尾
-            Debug.Log("数据已成功保存到文件: "+ "m_InputWord.text" + filePath);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("保存数据时出错: " + ex.Message);
-        }
         //提示词
         string _msg = m_InputWord.text;
 
@@ -198,18 +186,8 @@ public class ChatSample : MonoBehaviour
         //记录聊天
         m_ChatHistory.Add(aegisReaction);
 
-        string jsonString = JsonUtility.ToJson(responseData, true); // 将对象转换为 JSON 字符串
-        string filePath = Path.Combine(Application.dataPath, "AIChatTookit/Result/Logs.txt"); // 定义保存路径
-                                                                                              // 切换背景根据scene_id
-        try
-        {
-            File.AppendAllText(filePath, jsonString + Environment.NewLine); // 将 JSON 字符串附加到文件末尾
-            Debug.Log("数据已成功保存到文件: " + filePath);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("保存数据时出错: " + ex.Message);
-        }
+
+        // 切换背景根据scene_id
 
         if (sceneId != null)
         {
